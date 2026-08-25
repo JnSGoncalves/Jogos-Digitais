@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player1 : MonoBehaviour {
     // Player 1
     public KeyCode moveUp = KeyCode.W;      // Move a raquete para cima
     public KeyCode moveDown = KeyCode.S;    // Move a raquete para baixo

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player2 : MonoBehaviour {
     // Player 2
-    public KeyCode moveUp = KeyCode.moveUp;      // Move a raquete para cima
-    public KeyCode moveDown = KeyCode.moveDown;    // Move a raquete para baixo
-    public KeyCode moveLeft = KeyCode.moveLeft;      // Move a raquete para cima
-    public KeyCode moveRight = KeyCode.moveRight;    // Move a raquete para baixo
+    public KeyCode moveUp = KeyCode.UpArrow;      // Move a raquete para cima
+    public KeyCode moveDown = KeyCode.DownArrow;    // Move a raquete para baixo
+    public KeyCode moveLeft = KeyCode.LeftArrow;      // Move a raquete para cima
+    public KeyCode moveRight = KeyCode.RightArrow;    // Move a raquete para baixo
 
     public float speed = 100.0f;             // Define a velocidade da raquete
     public float boundY = 0f;               // Define os limites em Y
