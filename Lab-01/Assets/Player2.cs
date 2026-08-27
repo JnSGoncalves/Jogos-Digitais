@@ -2,6 +2,7 @@ using System.Numerics;
 using UnityEngine;
 
 public class Player2 : MonoBehaviour {
+<<<<<<< HEAD
     private Vector3 initPos;
     public KeyCode moveUp = KeyCode.W;      // Move a raquete para cima
     public KeyCode moveDown = KeyCode.S;    // Move a raquete para baixo
@@ -10,6 +11,13 @@ public class Player2 : MonoBehaviour {
     public KeyCode multplayerStarter = KeyCode.Space;
     public KeyCode multplayerFinisher = KeyCode.Escape; 
     public bool isMultplayer = false;
+=======
+    // Player 2
+    public KeyCode moveUp = KeyCode.UpArrow;      // Move a raquete para cima
+    public KeyCode moveDown = KeyCode.DownArrow;    // Move a raquete para baixo
+    public KeyCode moveLeft = KeyCode.LeftArrow;      // Move a raquete para cima
+    public KeyCode moveRight = KeyCode.RightArrow;    // Move a raquete para baixo
+>>>>>>> b760b8fe7da401e5e27e2cc572aa7422d8d61c98
 
     public float boundY = 1f;               // Define os limites em Y
     private Rigidbody2D rb2d;               // Define o corpo rigido 2D que representa a raquete

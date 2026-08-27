@@ -852,6 +852,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+=======
+--- !u!114 &823458896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823458895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274f3c3606ffb3549a6fd38ff96950ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  moveUp: 119
+  moveDown: 115
+  moveLeft: 97
+  moveRight: 100
+  speed: 100
+  boundY: 0
+>>>>>>> b760b8fe7da401e5e27e2cc572aa7422d8d61c98
 --- !u!50 &823458897
 Rigidbody2D:
   serializedVersion: 5

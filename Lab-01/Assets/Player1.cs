@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Player1 : MonoBehaviour {
+<<<<<<< HEAD
     private Vector3 initPos;
     public KeyCode moveUp = KeyCode.UpArrow;      // Move a raquete para cima
     public KeyCode moveDown = KeyCode.DownArrow;    // Move a raquete para baixo
@@ -9,6 +10,13 @@ public class Player1 : MonoBehaviour {
     public KeyCode multplayerStarter = KeyCode.Space;
     public KeyCode multplayerFinisher = KeyCode.Escape; 
     public bool isMultplayer = false;
+=======
+    // Player 1
+    public KeyCode moveUp = KeyCode.W;      // Move a raquete para cima
+    public KeyCode moveDown = KeyCode.S;    // Move a raquete para baixo
+    public KeyCode moveLeft = KeyCode.A;      // Move a raquete para cima
+    public KeyCode moveRight = KeyCode.D;    // Move a raquete para baixo
+>>>>>>> b760b8fe7da401e5e27e2cc572aa7422d8d61c98
 
     public float speed = 150.0f;             // Define a velocidade da raquete
     public float keyboardSpeed = 15f;
