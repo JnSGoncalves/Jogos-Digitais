@@ -1,34 +1,92 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour {
-    // Player 1
-    public KeyCode moveUp = KeyCode.W;      // Move a raquete para cima
-    public KeyCode moveDown = KeyCode.S;    // Move a raquete para baixo
-    public KeyCode moveLeft = KeyCode.A;      // Move a raquete para cima
-    public KeyCode moveRight = KeyCode.D;    // Move a raquete para baixo
+public class Player1 : MonoBehaviour {
+    private Vector3 initPos;
+    public KeyCode moveUp = KeyCode.UpArrow;      // Move a raquete para cima
+    public KeyCode moveDown = KeyCode.DownArrow;    // Move a raquete para baixo
+    public KeyCode moveLeft = KeyCode.LeftArrow;      // Move a raquete para cima
+    public KeyCode moveRight = KeyCode.RightArrow;    // Move a raquete para baixo
+    public KeyCode multplayerStarter = KeyCode.Space;
+    public KeyCode multplayerFinisher = KeyCode.Escape; 
+    public bool isMultplayer = false;
 
-    public float speed = 100.0f;             // Define a velocidade da raquete
-    public float boundY = 0f;               // Define os limites em Y
+    public float speed = 150.0f;             // Define a velocidade da raquete
+    public float keyboardSpeed = 15f;
+    public float boundY = -1f;               // Define os limites em Y
     private Rigidbody2D rb2d;               // Define o corpo rigido 2D que representa a raquete
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
-    }
+
+        initPos = transform.position;
+    } 
 
     // Update is called once per frame
     void Update(){
+        if (Input.GetKey(multplayerStarter)){
+            if (!isMultplayer)
+                isMultplayer = true;
+        }
+        if (Input.GetKey(multplayerFinisher)){
+            if (isMultplayer)
+                isMultplayer = false;
+        }
+
+        Vector3 mousePos;
+        Vector3 speedVec;
         Vector3 playerPos = transform.position;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 dir = rb2d.linearVelocity;
 
-        Vector3 dir = mousePos - playerPos;
-        dir.Normalize();
+        if (isMultplayer){
+            if (Input.GetKey(moveUp)) {
+                dir.y = 1;
+            }
+            else if (Input.GetKey(moveDown)) {
+                dir.y = -1;                    
+            }
+            else {
+                dir.y = 0;
+            }
 
-        Vector3 speedVec = dir * speed;
+            if (Input.GetKey(moveRight)) { 
+                dir.x = 1;
+            }
+            else if (Input.GetKey(moveLeft)) {
+                dir.x = -1;                    
+            }
+            else {
+                dir.x = 0;
+            }
+            dir.Normalize();
+            speedVec = dir * keyboardSpeed;
 
-        var vel = rb2d.velocity;
+        }else {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            dir = mousePos - playerPos;
+
+            dir.Normalize();
+            speedVec = dir * speed;
+        }
+
+        var vel = rb2d.linearVelocity;
         vel.x = speedVec.x;
-        vel.y = speedVec.y;
-        rb2d.velocity = vel;
+
+        if (playerPos.y >= boundY && dir.y > 0) {
+            playerPos.y = boundY;
+            transform.position = playerPos;
+            vel.y = 0;
+        }
+        else {
+            vel.y = speedVec.y;
+        }
+
+        rb2d.linearVelocity = vel;
+    }
+
+    void Reset()
+    {
+        transform.position = initPos;
     }
 }

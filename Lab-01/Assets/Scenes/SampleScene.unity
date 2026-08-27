@@ -843,8 +843,8 @@ GameObject:
   - component: {fileID: 823458899}
   - component: {fileID: 823458898}
   - component: {fileID: 823458897}
-  - component: {fileID: 823458896}
   - component: {fileID: 823458900}
+  - component: {fileID: 823458901}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -852,22 +852,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &823458896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823458895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4198d08985b1cf2459171dcf925d282c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveUp: 119
-  moveDown: 115
-  speed: 10
-  boundY: 0
 --- !u!50 &823458897
 Rigidbody2D:
   serializedVersion: 5
@@ -1004,6 +988,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.935
+--- !u!114 &823458901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823458895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274f3c3606ffb3549a6fd38ff96950ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player1
+  moveUp: 273
+  moveDown: 274
+  moveLeft: 276
+  moveRight: 275
+  multplayerStarter: 32
+  isMultplayer: 0
+  speed: 150
+  keyboardSpeed: 15
+  boundY: -1
 --- !u!1 &1149209577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,8 +1450,9 @@ GameObject:
   - component: {fileID: 2089114472}
   - component: {fileID: 2089114474}
   - component: {fileID: 2089114475}
+  - component: {fileID: 2089114476}
   m_Layer: 0
-  m_Name: Player_0
+  m_Name: Player_2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1588,6 +1594,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.935
+--- !u!114 &2089114476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089114471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c36b91194c7244eba55c844df66651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player2
+  moveUp: 119
+  moveDown: 115
+  moveLeft: 97
+  moveRight: 100
+  multplayerStarter: 32
+  isMultplayer: 0
+  speed: 150
+  keyboardSpeed: 15
+  boundY: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

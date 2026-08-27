@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour{
     private Rigidbody2D rb2d;               // Define o corpo rigido 2D que representa a bola
+    public float maxSpeed = 60f;
 
     // inicializa a bola randomicamente para esquerda ou direita
     void GoBall(){                      
@@ -17,7 +18,7 @@ public class Ball : MonoBehaviour{
         if(coll.collider.CompareTag("Player")){
             Vector2 vel;
             vel.x = rb2d.linearVelocity.x;
-            vel.y = (rb2d.linearVelocity.y / 2) + (coll.collider.attachedRigidbody.linearVelocity.y / 3);
+            vel.y = rb2d.linearVelocity.y;
             rb2d.linearVelocity = vel;
         }
     }
@@ -44,6 +45,13 @@ public class Ball : MonoBehaviour{
 
     }
     
+    void FixedUpdate()
+    {
+        rb2d.linearVelocity = Vector3.ClampMagnitude(
+            rb2d.linearVelocity, 
+            maxSpeed
+        );
+    }
 
     // Update is called once per frame
     void Update()
