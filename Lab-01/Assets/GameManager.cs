@@ -3,67 +3,59 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static int PlayerScore1 = 0;
-    public static int PlayerScore2 = 0;
+    public Ball ball;
 
-    public GameObject theBall;
+    public AudioSource scoreSound;
 
-    public TMP_Text scorePlayer1;
-    public TMP_Text scorePlayer2;
     public TMP_Text winnerText;
+
+    private TMP_Text scoreText;
+
+    private int playerScore1 = 0;
+    private int playerScore2 = 0;
 
     private bool gameOver = false;
 
     void Start()
     {
-        PlayerScore1 = 0;
-        PlayerScore2 = 0;
+        scoreText = GetComponent<TMP_Text>();
+
+        playerScore1 = 0;
+        playerScore2 = 0;
 
         winnerText.gameObject.SetActive(false);
 
         UpdateScore();
     }
 
-    public static void Score(string wallID)
+    public void Score(string wallID)
     {
-        string[] scores = scoreText.text.Split(" - ");
-
-        PlayerScore1 = int.Parse(scores[0]);
-        PlayerScore2 = int.Parse(scores[1]);
-
-        if (wallName.Equals("Top_Goal"))
+        if (wallID.Equals("Top_Goal"))
         {
-            PlayerScore1++;
+            playerScore1++;
         }
-        else if (wallName.Equals("Bottom_Goal"))
+        else if (wallID.Equals("Bottom_Goal"))
         {
-            PlayerScore2++;
+            playerScore2++;
         }
 
         scoreSound.Play();
-    }
 
-    void Update()
-    {
         UpdateScore();
 
-        if (!gameOver)
+        if (playerScore1 >= 10)
         {
-            if (PlayerScore1 >= 10)
-            {
-                EndGame("P1 VENCEU!");
-            }
-            else if (PlayerScore2 >= 10)
-            {
-                EndGame("P2 VENCEU!");
-            }
+            EndGame("P1 VENCEU!");
+        }
+        else if (playerScore2 >= 10)
+        {
+            EndGame("P2 VENCEU!");
         }
     }
 
     void UpdateScore()
     {
-        scorePlayer1.text = PlayerScore1.ToString();
-        scorePlayer2.text = PlayerScore2.ToString();
+        scoreText.text = $"{playerScore1} - {playerScore2}";
     }
 
     void EndGame(string message)
@@ -73,19 +65,15 @@ public class GameManager : MonoBehaviour
         winnerText.text = message;
         winnerText.gameObject.SetActive(true);
 
-        theBall.SendMessage(
-            "ResetBall",
-            null,
-            SendMessageOptions.RequireReceiver
-        );
+        ball.ResetBall();
 
-        Invoke("RestartGame", 2f);
+        Invoke(nameof(RestartGame), 2f);
     }
 
     void RestartGame()
     {
-        PlayerScore1 = 0;
-        PlayerScore2 = 0;
+        playerScore1 = 0;
+        playerScore2 = 0;
 
         winnerText.gameObject.SetActive(false);
 
@@ -93,10 +81,6 @@ public class GameManager : MonoBehaviour
 
         gameOver = false;
 
-        theBall.SendMessage(
-            "RestartGame",
-            null,
-            SendMessageOptions.RequireReceiver
-        );
+        ball.ResetBall();
     }
 }
