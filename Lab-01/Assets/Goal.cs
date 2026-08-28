@@ -1,15 +1,13 @@
 using UnityEngine;
 
 public class Goal : MonoBehaviour {
-    public AudioSource goalSound;
     public GameManager gameManager;
 
     void OnTriggerEnter2D (Collider2D hitInfo) {
         if (hitInfo.tag == "Ball")
         {
-            goalSound.Play();
-            string wallName = transform.name;
-            GameManager.Score(wallName);
+            var wallName = transform.name;
+            gameManager.Score(wallName);
             hitInfo.gameObject.SendMessage("RestartGame", null, SendMessageOptions.RequireReceiver);
         }
     }
