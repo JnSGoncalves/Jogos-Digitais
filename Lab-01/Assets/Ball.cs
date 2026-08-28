@@ -24,18 +24,10 @@ public class Ball : MonoBehaviour{
     }
 
     // Reinicializa a posição e velocidade da bola
-    void ResetBall(){
+    public void ResetBall(){
         rb2d.linearVelocity = Vector2.zero;
         transform.position = Vector2.zero;
     }
-
-    // Reinicializa o jogo
-    void RestartGame(){
-        ResetBall();
-        Invoke("GoBall", 1);
-    }
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

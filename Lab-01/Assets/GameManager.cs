@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
         ball.ResetBall();
         player1.Reset();
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Score(string wallName)
+    public void Score(string wallName)
     {
         GameObject score = GameObject.Find("Score");
         string txt = score.text;

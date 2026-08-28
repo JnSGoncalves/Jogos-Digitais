@@ -85,7 +85,7 @@ public class Player1 : MonoBehaviour {
         rb2d.linearVelocity = vel;
     }
 
-    void Reset()
+    public void Reset()
     {
         transform.position = initPos;
     }

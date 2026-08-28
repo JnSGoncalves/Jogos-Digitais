@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEngine;
 
 public class Player2 : MonoBehaviour {
@@ -11,6 +10,8 @@ public class Player2 : MonoBehaviour {
     public KeyCode multplayerFinisher = KeyCode.Escape; 
     public bool isMultplayer = false;
 
+    public float speed = 150.0f;             // Define a velocidade da raquete
+    public float keyboardSpeed = 15f;
     public float boundY = 1f;               // Define os limites em Y
     private Rigidbody2D rb2d;               // Define o corpo rigido 2D que representa a raquete
 
@@ -78,7 +79,7 @@ public class Player2 : MonoBehaviour {
         rb2d.linearVelocity = vel;
     }
 
-    void Reset()
+    public void Reset()
     {
         transform.position = initPos;
     }
