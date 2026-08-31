@@ -3,59 +3,56 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Ball ball;
+    public static int PlayerScore1 = 0;
+    public static int PlayerScore2 = 0;
 
-    public AudioSource scoreSound;
+    public GameObject theBall;
 
-    public TMP_Text winnerText;
-
-    private TMP_Text scoreText;
-
-    private int playerScore1 = 0;
-    private int playerScore2 = 0;
+    public TMP_Text score;
 
     private bool gameOver = false;
 
     void Start()
     {
-        scoreText = GetComponent<TMP_Text>();
-
-        playerScore1 = 0;
-        playerScore2 = 0;
-
-        winnerText.gameObject.SetActive(false);
+        PlayerScore1 = 0;
+        PlayerScore2 = 0;
 
         UpdateScore();
     }
 
-    public void Score(string wallID)
+    public static void Score(string wallID)
     {
-        if (wallID.Equals("Top_Goal"))
+        if (wallID == "TopGoal")
         {
-            playerScore1++;
+            PlayerScore1++;
         }
-        else if (wallID.Equals("Bottom_Goal"))
+        else
         {
-            playerScore2++;
+            PlayerScore2++;
         }
+    }
 
-        scoreSound.Play();
-
+    void Update()
+    {
         UpdateScore();
 
-        if (playerScore1 >= 10)
+        if (!gameOver)
         {
-            EndGame("P1 VENCEU!");
-        }
-        else if (playerScore2 >= 10)
-        {
-            EndGame("P2 VENCEU!");
+            if (PlayerScore1 >= 10)
+            {
+                EndGame("VOCÊ VENCEU!");
+            }
+            else if (PlayerScore2 >= 10)
+            {
+                EndGame("VOCÊ PERDEU... :(");
+            }
         }
     }
 
     void UpdateScore()
     {
-        scoreText.text = $"{playerScore1} - {playerScore2}";
+        scorePlayer1.text = PlayerScore1.ToString();
+        scorePlayer2.text = PlayerScore2.ToString();
     }
 
     void EndGame(string message)
@@ -65,15 +62,19 @@ public class GameManager : MonoBehaviour
         winnerText.text = message;
         winnerText.gameObject.SetActive(true);
 
-        ball.ResetBall();
+        theBall.SendMessage(
+            "ResetBall",
+            null,
+            SendMessageOptions.RequireReceiver
+        );
 
-        Invoke(nameof(RestartGame), 2f);
+        Invoke("RestartGame", 2f);
     }
 
     void RestartGame()
     {
-        playerScore1 = 0;
-        playerScore2 = 0;
+        PlayerScore1 = 0;
+        PlayerScore2 = 0;
 
         winnerText.gameObject.SetActive(false);
 
@@ -81,6 +82,10 @@ public class GameManager : MonoBehaviour
 
         gameOver = false;
 
-        ball.ResetBall();
+        theBall.SendMessage(
+            "RestartGame",
+            null,
+            SendMessageOptions.RequireReceiver
+        );
     }
 }

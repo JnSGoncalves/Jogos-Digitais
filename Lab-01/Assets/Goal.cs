@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
+        // gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
