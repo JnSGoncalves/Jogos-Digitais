@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        SetScore(FindFirstObjectByType<Bricks>().point);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+            SetScore(FindFirstObjectByType<Bricks>().point);
+        
         if(instance == null)
         {
             instance = this;
