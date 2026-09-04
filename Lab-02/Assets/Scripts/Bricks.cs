@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bricks : MonoBehaviour
 {
-    [SerializeField] int point = 10;
+    public int point = 10;
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))

@@ -150,3 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd94e2281efcd8940ab011da2ef5afe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bricks
+  point: 10

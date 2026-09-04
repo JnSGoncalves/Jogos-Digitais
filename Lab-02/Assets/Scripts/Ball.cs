@@ -12,6 +12,11 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void StartBall()
+    {
         rbBall.linearVelocity = Vector2.up * speedBall;
     }
 
@@ -23,6 +28,9 @@ public class Ball : MonoBehaviour
             Vector2 diretion =  new Vector2(eixoX, 1).normalized;
 
             rbBall.linearVelocity = diretion * speedBall;
+        }
+        if (collision.gameObject.CompareTag("GameOver")){
+            GameManager.instance.LoadGameOver();
         }
     }
 }
