@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bf55c29e2317a4cbf49aae142b3ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  speedBall: 10
+  speedBall: 8
 --- !u!1001 &228531093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3501,6 +3501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1326960745}
     m_Modifications:
+    - target: {fileID: -143669705337887797, guid: 987ca7082ed43fd4abb98b67b201c8e9, type: 3}
+      propertyPath: dureza
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6421823331702286187, guid: 987ca7082ed43fd4abb98b67b201c8e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.6679997
