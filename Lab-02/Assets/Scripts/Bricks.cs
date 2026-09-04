@@ -8,6 +8,7 @@ public class Bricks : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             Destroy(gameObject);
+            GameManager.instance.removeBricks();
             GameManager.instance.SetScore(point);
         }
     }

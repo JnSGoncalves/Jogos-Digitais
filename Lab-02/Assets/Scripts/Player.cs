@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(GameManager.instance.gameStates == GameStates.Stop)
+        {
+            return;
+        }
         float eixoX = Input.GetAxis("Horizontal");
         rbplayer.linearVelocity = new Vector2(eixoX * speedPlayer, rbplayer.linearVelocity.y);
     }

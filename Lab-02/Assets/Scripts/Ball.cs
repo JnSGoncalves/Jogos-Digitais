@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Palyer"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             float eixoX = transform.position.x - collision.transform.position.x / collision.collider.bounds.size.x;
             Vector2 diretion =  new Vector2(eixoX, 1).normalized;
