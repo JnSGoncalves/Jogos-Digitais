@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private float maxLimitX = 7.2f;
     private float minLimitX = -8.2f;
     private float shootTimer = 0.0f;
-    [SerializeField] float bulletSpeed = 2f;
+    [SerializeField] float bulletSpeed = 15f;
     [SerializeField] float speedPlayer = 10f;
 
     private void Awake()
@@ -16,10 +16,11 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        // if(GameManager.instance.gameStates == GameStates.Stop)
-        // {
-        //     return;
-        // }
+        if(GameManager.instance.isRunning == false) {
+            rb2d.linearVelocity = Vector2.zero;
+            return;
+        }
+
         float eixoX = Input.GetAxis("Horizontal");
         rb2d.linearVelocity = new Vector2(eixoX * speedPlayer, rb2d.linearVelocity.y);
 
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
         if (shootTimer <= 0.0f) {
             if (Input.GetKey(shootKey)) {
                 Shoot();
-                shootTimer = 1.0f;
+                shootTimer = 0.5f;
             }
         }else {
             shootTimer -= Time.deltaTime;
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(Resources.Load("Prefabs/PlayerBullet", typeof(GameObject))) as GameObject;
-        bullet.transform.position = new Vector2(rb2d.position.x, rb2d.position.y);
+        bullet.transform.position = new Vector2(rb2d.position.x + 0.5f, rb2d.position.y);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, bulletSpeed);        
     }
 

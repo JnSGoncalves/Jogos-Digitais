@@ -29,6 +29,10 @@ public class Mothership : MonoBehaviour
 
     private void Update()
     {
+        if(GameManager.instance.isRunning == false) {
+            rb2d.linearVelocity = Vector2.zero;
+            return;
+        }
         timer += Time.deltaTime;
 
         if (!isMoving)
@@ -65,9 +69,9 @@ public class Mothership : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerBullet")) {
-            GameManager.instance.SumScore(points);
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            GameManager.instance.SumScore(points);
         }
     }
 

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tela2.unity
     guid: a9cf683a806786344bfa98c66a7f87f5
   - enabled: 1
-    path: Assets/Scenes/Tela3.unity
+    path: Assets/Scenes/Tela2.unity
     guid: f32593aed086b8a479fcbdd714df6502
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

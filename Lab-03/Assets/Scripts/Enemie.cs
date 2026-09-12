@@ -18,12 +18,16 @@ public class Enemie : MonoBehaviour {
         var vel = rb2d.linearVelocity;
         vel.x = speed;
         rb2d.linearVelocity = vel;
-        bulletWaitTime = Random.Range(5.0f, 50.0f);
+        bulletWaitTime = Random.Range(5.0f, 30.0f);
     }
 
     // Update is called once per frame
     void Update()
     {        
+        if(GameManager.instance.isRunning == false) {
+            rb2d.linearVelocity = Vector2.zero;
+            return;
+        }
         timer += Time.deltaTime;
         if (timer >= waitTime){
             ChangeState();
@@ -31,10 +35,10 @@ public class Enemie : MonoBehaviour {
         }
 
         bulletTimer += Time.deltaTime;
-        if (bulletTimer >= bulletWaitTime && Random.Range(0, 10000) < 5){
+        if (bulletTimer >= bulletWaitTime && Random.Range(0, 100) < 2){
             CrateBullet();
             bulletTimer = 0.0f;
-            bulletWaitTime = Random.Range(5.0f, 50.0f);
+            bulletWaitTime = Random.Range(5.0f, 30.0f);
         }
     }
 
@@ -44,15 +48,21 @@ public class Enemie : MonoBehaviour {
         rb2d.linearVelocity = vel;
 
         var y = rb2d.position.y;
-        y -= 0.05f;
+        y -= 0.2f;
         rb2d.position = new Vector2(rb2d.position.x, y);
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerBullet")) {
-            GameManager.instance.SumScore(points);
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            GameManager.instance.SumScore(points);
+
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("BottomLimit")) {
+            GameManager.instance.GameOver();
         }
     }
 
