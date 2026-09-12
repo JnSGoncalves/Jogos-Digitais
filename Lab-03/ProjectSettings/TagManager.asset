@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bullet
+  - Life1
+  - Life2
+  - Life3
+  - PlayerBullet
+  - Enemie
   layers:
   - Default
   - TransparentFX

@@ -7,9 +7,8 @@ public class Enemie : MonoBehaviour {
     private float bulletTimer = 0.0f;
     private float bulletWaitTime = 0.0f;
     private float speed = 0.5f;
-    public float bulletSpeed = 2.0f;
-    public int points = 1;
-
+    public float bulletSpeed = 1.0f;
+    public int points = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +46,14 @@ public class Enemie : MonoBehaviour {
         var y = rb2d.position.y;
         y -= 0.05f;
         rb2d.position = new Vector2(rb2d.position.x, y);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("PlayerBullet")) {
+            GameManager.instance.SumScore(points);
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 
     void CrateBullet(){
