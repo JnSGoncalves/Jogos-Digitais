@@ -46,13 +46,13 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D  collision) {
-        Debug.Log("COLISÃO DETECTADA");
-
         if (collision.gameObject.CompareTag("Bullet")) {
             Debug.Log("BULLET DETECTADA");
 
             GameManager.instance.LoseLife();
             Destroy(collision.gameObject);
+        }else if (collision.gameObject.CompareTag("Enemie")) {
+            GameManager.instance.GameOver();
         }
     }
 }
