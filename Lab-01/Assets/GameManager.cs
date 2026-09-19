@@ -3,14 +3,27 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     public static int PlayerScore1 = 0;
     public static int PlayerScore2 = 0;
 
     public GameObject theBall;
 
     public TMP_Text score;
-
+    public TMP_Text winnerText;
     private bool gameOver = false;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else if(Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -20,7 +33,7 @@ public class GameManager : MonoBehaviour
         UpdateScore();
     }
 
-    public static void Score(string wallID)
+    public void Score(string wallID)
     {
         if (wallID == "TopGoal")
         {
@@ -51,8 +64,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateScore()
     {
-        scorePlayer1.text = PlayerScore1.ToString();
-        scorePlayer2.text = PlayerScore2.ToString();
+        score.text = PlayerScore1.ToString() + " - " + PlayerScore2.ToString();
     }
 
     void EndGame(string message)

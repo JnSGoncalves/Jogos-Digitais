@@ -13,8 +13,7 @@ public class Goal : MonoBehaviour
     {
         if (hitInfo.CompareTag("Ball"))
         {
-            gameManager.Score(gameObject.name);
-
+            GameManager.Instance.Score(gameObject.name);
             
         }
     }

@@ -4,6 +4,8 @@ public class Enemie : MonoBehaviour {
     private Rigidbody2D rb2d;
     private float timer = 0.0f;
     private float waitTime = 4.0f;
+    [SerializeField] private float speedMultiplier = 1.1f;
+    [SerializeField] private float minimumWaitTime = 0.5f;
     private float bulletTimer = 0.0f;
     private float bulletWaitTime = 0.0f;
     private float speed = 0.5f;
@@ -47,9 +49,20 @@ public class Enemie : MonoBehaviour {
         vel.x *= -1;
         rb2d.linearVelocity = vel;
 
+        IncreaseDifficulty();
+
         var y = rb2d.position.y;
         y -= 0.2f;
         rb2d.position = new Vector2(rb2d.position.x, y);
+    }
+
+    void IncreaseDifficulty(){
+        speed *= speedMultiplier;
+        waitTime = Mathf.Max(waitTime / speedMultiplier, minimumWaitTime);
+
+        var vel = rb2d.linearVelocity;
+        vel.x = Mathf.Sign(vel.x) * speed;
+        rb2d.linearVelocity = vel;
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
