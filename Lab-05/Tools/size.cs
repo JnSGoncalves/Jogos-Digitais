@@ -1,0 +1,15 @@
+var assembly = typeof(UnityEditor.Editor).Assembly;
+var sizesType = assembly.GetType("UnityEditor.GameViewSizes");
+var singleton = typeof(UnityEditor.ScriptableSingleton<>).MakeGenericType(sizesType);
+var sizes = singleton.GetProperty("instance").GetValue(null);
+var group = sizesType.GetMethod("GetGroup").Invoke(sizes, new object[] { 0 });
+var sizeType = assembly.GetType("UnityEditor.GameViewSize");
+var kind = assembly.GetType("UnityEditor.GameViewSizeType");
+var size = System.Activator.CreateInstance(sizeType, new object[] { System.Enum.ToObject(kind, 1), 1280, 720, "Dust & Whip 720p" });
+group.GetType().GetMethod("AddCustomSize").Invoke(group, new object[] { size });
+int index = (int)group.GetType().GetMethod("GetTotalCount").Invoke(group, null) - 1;
+var viewType = assembly.GetType("UnityEditor.GameView");
+var view = UnityEditor.EditorWindow.GetWindow(viewType);
+viewType.GetProperty("selectedSizeIndex", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(view, index);
+view.Repaint();
+return "Game view 1280x720";
